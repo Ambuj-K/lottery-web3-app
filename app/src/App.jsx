@@ -13,10 +13,9 @@ export default function App() {
    * All state property to store all waves
    */
   const [allWaves, setAllWaves] = useState([]);
-  const contractAddress = "0x1a85170A6a5B6199B6229d53C621B018665e91B4";
+  const contractAddress = "0x319B2F97Aef49154796ae287cF451C4feefDa2f7";
 
-  let regInput = React.useRef("");
-  let message_val = regInput.current.value;
+  const [input, setInput] = useState("");
   /*
    * Create a method that gets all waves from your contract
    */
@@ -74,8 +73,8 @@ export default function App() {
         /*
         * Execute the actual wave from your smart contract
         */
-        console.log("message  ", message_val);
-        const waveTxn = await wavePortalContract.wave(message_val);
+        console.log("message  ", input);
+        const waveTxn = await wavePortalContract.wave(input);
         console.log("Mining...", waveTxn.hash);
 
         await waveTxn.wait();
@@ -180,7 +179,8 @@ export default function App() {
           </button>
         )}
         <p>
-          <input type="text" ref={regInput}/>
+          <input type="text" value={input} 
+           onChange={(e) => setInput(e.target.value)}/>
           <button type="submit" onClick={wave}>Send Message</button>
         </p>
         {allWaves.map((wave, index) => {
