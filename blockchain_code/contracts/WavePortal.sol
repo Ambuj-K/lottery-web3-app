@@ -9,8 +9,12 @@ contract WavePortal{
     string message;
     mapping (address=>uint256) wavingUserCounts;
     uint256 timestamp;
-
+    
+    //Event type to emit for each account that waves at us
+    
     event NewWave(address indexed from, uint256 timestamp, string message);
+    
+    //Struct type to store details of the wave sent
 
     struct Wave {
         address waver; // The address of the user who waved.
