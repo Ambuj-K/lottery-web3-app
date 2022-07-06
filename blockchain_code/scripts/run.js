@@ -9,6 +9,14 @@ const main = async() => {
 
     let waveCount;
     waveCount = await waveContract.displayTotalWaves();
+
+    let contractBalance = await hre.ethers.provider.getBalance(
+        waveContract.address
+    );
+    console.log(
+        "Contract balance:",
+        hre.ethers.utils.formatEther(contractBalance)
+    );
     
     let waveTxn = await waveContract.wave("A message!");
     await waveTxn.wait();
@@ -18,12 +26,30 @@ const main = async() => {
     waveTxn = await waveContract.connect(randomUser).wave("A message!");
     await waveTxn.wait();
 
+    contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
+    console.log(
+      "Contract balance:",
+      hre.ethers.utils.formatEther(contractBalance)
+    );
+
     waveTxn = await waveContract.connect(randomUser1).wave("Another message!");
     await waveTxn.wait();
+
+    contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
+    console.log(
+      "Contract balance:",
+      hre.ethers.utils.formatEther(contractBalance)
+    );
 
     waveTxn = await waveContract.connect(randomUser).wave("A message!");
     await waveTxn.wait();
 
+    contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
+    console.log(
+      "Contract balance:",
+      hre.ethers.utils.formatEther(contractBalance)
+    );
+    
     waveCount = await waveContract.displayTotalWaves();
 
     let allWaves = await waveContract.getAllWaves();
