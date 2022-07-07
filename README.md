@@ -1,5 +1,5 @@
-# lottery-web3-app
-An end to end web3 lottery app. With the UI, the blockchain code and tests.
+# wave-at-lottery-web3-app
+An end to end web3 wave at me lottery app. With the UI, the blockchain code and tests.
 
 
 
